@@ -26,7 +26,7 @@
 			    height:0px;
 			    font-family: retro;} 	
         a{text-decoration:none;color:#0F6;}
-		ul li {display:inline;font-size:130%;}	 
+		ul li {display:inline;}	 
 		li {border: 2px solid green;
 			        color:#0F6;
 			        padding:5px;
@@ -38,7 +38,7 @@
 	 <div class="hidden"> brkz </div>	  
 	 <div id="container">
 	    <canvas id="g"></canvas>
-		<div id="overlay"><ul>
+		<div id="overlay"><ul id="list">
 			                <li><a href="#">The Game</a></li>
 			                <li><a href="https://twitter.com/gamezonchain">Twitter</a></li>
 						  </ul>
@@ -56,6 +56,7 @@
 	  var TW;
 	  var i=0,x=0,y=0;
 	  var container;
+	  var list;
 	 
 	  var text="* BRKZ is a retrogame that fully lives on>the Cardano blockchain.|* All the game code is on-chain. No need>to rely on external resources (no IPFS).|* 99 levels.|* Interactive graphics.|* Synthesized audio FXs.|* Responsive design.|* Play it everywhere:>  - on desktop and laptop computers;>  - on mobile devices (Android and iOS).|* 16Kb of fun that comes from the past!";
 	 
@@ -88,6 +89,8 @@
 		var ratio = window.devicePixelRatio;
         canvas = document.getElementById("g");
 		container = document.getElementById("container");
+		list = document.getElementById("list");
+		
 		csize = Math.min(window.innerWidth, window.innerHeight)-16;
 		container.style.width=container.style.height=csize+"px";
 		canvas.width = canvas.height = csize*ratio;
@@ -95,6 +98,7 @@
 		ctx.scale(ratio,ratio);
 		canvas.style.width=canvas.style.height=csize+"px";
 		brickH = brickW = csize/45|0;
+		list.style.fontSize = brickH*1.3+"px";
 		boardW = 45*brickW;	
 		boardH = 45*brickH;
 		ctx.fillStyle=color; 
