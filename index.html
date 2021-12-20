@@ -11,19 +11,20 @@
  			  position: relative; margin:auto;
  		}
  		 
-		
 		#overlay { 
 			       position:absolute; z-index: 2; 
 				   bottom:2%;right:2%;font-family:'retro'; }
-		 canvas {position:absolute;z-index:1;border:6px solid green;border-radius:25px;background:#000;padding:2px;margin:auto;display:block;}
-		 @font-face {
+		canvas {position:absolute;z-index:1;
+			    border:6px solid green;border-radius:25px;
+				background:#000;padding:2px;margin:auto;display:block;}
+		
+		@font-face {
 		             font-family:'retro'; 
 		             src: url('PressStart2P-Regular.ttf');
-				 } 
+			  	   } 
 		.hidden{visibility:hidden;
-			height:0px;
-			font-family: retro;} 	
-
+			    height:0px;
+			    font-family: retro;} 	
         a{text-decoration:none;color:#0F6;}
 		ul li {display:inline;font-size:130%;}	 
 		li {border: 2px solid green;
@@ -44,21 +45,18 @@
 		</div>
      </div>
      <script>
-      // Variabili globali
-      var canvas; // Elemento canvas
+      var canvas; 
 	  var csize;
-      var ctx; // Elemento context del canvas
-      var boardX  // Larghezza campo di gioco
-      var boardY  // Altezza campo di gioco
+      var ctx; 
+      var boardX;  
+      var boardY;  
 	  var boardW,boardH,brickH,brickW;
-	  var color="#0F6"	//green P1	
+	  var color="#0F6"	
 	  var fps = 40;
 	  var TW;
 	  var i=0,x=0,y=0;
 	  var container;
-	  
-	  //|* All the game code is on-chain
-
+	 
 	  var text="* BRKZ is a retrogame that fully lives on>the Cardano blockchain.|* All the game code is on-chain. No need>to rely on external resources (no IPFS).|* 99 levels.|* Interactive graphics.|* Synthesized audio FXs.|* Responsive design.|* Play it everywhere:>  - on desktop and laptop computers;>  - on mobile devices (Android and iOS).|* 16Kb of fun that comes from the past!";
 	 
 	  function typeWriter(){ 
@@ -69,7 +67,6 @@
 	    if (i>text.length)
 			clearInterval(TW);		
 	  }
-	  
 	  
 	  function fast(){
 		  var j=0,x=0,y=0;
@@ -86,15 +83,11 @@
 		  ctx.font="underline";
 	      ctx.fillText("Twitter", brickW*38, 43*brickH); 
 	  }
-	  function winResize(){
-		  init();}
+	  
       function init() { 		   
 		var ratio = window.devicePixelRatio;
-		//d = newDate();
         canvas = document.getElementById("g");
 		container = document.getElementById("container");
-		
-		//canvas.style.overflow = 'hidden';
 		csize = Math.min(window.innerWidth, window.innerHeight)-16;
 		container.style.width=container.style.height=csize+"px";
 		canvas.width = canvas.height = csize*ratio;
@@ -108,7 +101,6 @@
 		ctx.font ="10px sans-serif";
 		boardX = (csize - boardW)/2;
 		boardY = (csize - boardH)/2;
-		//drawBoard();
 		ctx.clearRect(0,0,csize,csize);
 		var c=createText("b r k z");
 		draw((csize-35*brickW)/2,boardY+2*brickH,createText("b r k z"));
@@ -116,8 +108,7 @@
   	 	TW = setInterval(typeWriter,fps);
 		document.addEventListener("click",fast);
       }  
-	 
-	  
+	   
 	 function letter(c){
 		 switch(c){
 			 case 'b': return [[1,1,1,1,0],
@@ -173,16 +164,14 @@
 		 for(var i=0;i<cmat[0].length;i++){
 			 var aux =[];
 			 for(var j=0;j<s.length;j++){
-			    aux = aux.concat(cmat[j][i].concat([0]))
+				 aux = aux.concat(cmat[j][i].concat([0]));
 		     }
 			 txt.push(aux);
 		 }
-		 return txt;
-		 
+		 return txt;	 
 	 }	
 	 
 	 function draw(x,y,txt){
-	  //ctx.strokeStyle=color;	
 	  for(var i=0;i<txt.length;i++){
 		  for(var j=0;j<txt[0].length;j++){
 			  if (txt[i][j] != 0){	  
