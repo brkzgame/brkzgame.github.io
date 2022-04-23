@@ -13,12 +13,10 @@
  		 
 		#overlay { 
 			       position:absolute; z-index: 2; 
-				   bottom:2%;right:2%;font-family:'retro'; 
-			     }
+				   bottom:2%;right:2%;font-family:'retro'; }
 		canvas {position:absolute;z-index:1;
 			    border:6px solid green;border-radius:25px;
-				background:#000;padding:2px;margin:auto;display:block;
-			   }
+				background:#000;padding:2px;margin:auto;display:block;}
 		
 		@font-face {
 		             font-family:'retro'; 
@@ -35,16 +33,14 @@
 				    border-radius:5px;
 				    background:black;}
 		li:hover{background:green;}			
-	 </style>
-  </head>	 	 
-  <body onload="init();"> 	
+	 </style>	 
+     <body onload="init();"> 	
 	 <div class="hidden"> brkz </div>	  
 	 <div id="container">
 	    <canvas id="g"></canvas>
 		<div id="overlay"><ul id="list">
-			                <li><a href="read.html">Read it!</a></li>
-			                <li><a href="so.html">Play to mint</a></li>
-			                <li><a href="https://twitter.com/gamezonchain">Twitter</a></li>
+			                
+			                <li><a href="./index.html">home</a></li>
 						  </ul>
 		</div>
      </div>
@@ -55,36 +51,10 @@
       var boardX;  
       var boardY;  
 	  var boardW,boardH,brickH,brickW;
-	  var color="#0F6"	
-	  var fps = 40;
-	  var TW;
-	  var i=0,x=0,y=0;
+	  var color="#0F6";	
 	  var container;
 	  var list;
-	 
-	  var text="* BRKZ is a retrogame that fully lives on>the Cardano blockchain.|* All the game code is on-chain. No need>to rely on external resources (no IPFS).|* 99 levels.|* Interactive graphics.|* Synthesized sound FXs.|* Responsive design.|* Play it everywhere:>  - on desktop and laptop computers;>  - on mobile devices (Android and iOS).|* 16Kb of fun that comes from the past!";
-	 
-	  function typeWriter(){ 
-		if (text.charAt(i) == ">") {i++;x=2;y+=1.5;}
-		if (text.charAt(i) == "|") {i++;x=0;y+=2.2;}
-		ctx.globalAlpha=1;
-		ctx.fillText(text.charAt(i), boardX+brickW*(2+x), (16+y)*brickH);  	
-		i++;x++;
-	    if (i>text.length)
-			clearInterval(TW);		
-	  }
-	  
-	  function fast(){
-		  var j=0,x=0,y=0;
-		  clearInterval(TW);	
-		  while (j<text.length){
-	  		if (text.charAt(j) == ">") {j++;x=2;y+=1.5;}
-	  		if (text.charAt(j) == "|") {j++;x=0;y+=2.2;}
-			ctx.fillText(text.charAt(j), boardX+brickW*(2+x), (16+y)*brickH); 
-			j++;x++;
-		  } 	
-	  }
-	  	
+	  var c;
 	  
       function init() { 		   
 		var ratio = window.devicePixelRatio;
@@ -107,46 +77,68 @@
 		boardX = (csize - boardW)/2;
 		boardY = (csize - boardH)/2;
 		ctx.clearRect(0,0,csize,csize);
-		setInterval(function(){ctx.clearRect(0,0,csize-16,11*brickH);draw((csize-35*brickW)/2,boardY+2*brickH,createText("b r k z"));},250);
-		//draw((csize-35*brickW)/2,boardY+2*brickH,createText("b r k z"));
-		ctx.font = brickH+'px retro';
-  	 	TW = setInterval(typeWriter,fps);
-		document.addEventListener("click",fast);
-      }  
+		setInterval(function(){ctx.clearRect(0,0,csize,csize);
+			                   draw((csize-35*brickW)/2,boardY+12*brickH,createText("s o l d"));
+						       draw((csize-35*brickW)/2+5*brickW,boardY+22*brickH,createText("o u t"))},250);}
+							   //draw((csize-35*brickW)/2,boardY+20*brickH,createText("o u t"));},250);
+      
 	   
 	 function letter(c){
 		 switch(c){
-			 case 'b': return [[1,1,1,1,0],
-			                   [1,0,0,0,1],
-			                   [1,0,0,0,1],
+			 case 's': return [[0,1,1,1,1],
+			                   [1,0,0,0,0],
+			                   [1,0,0,0,0],
 			                   [1,1,1,1,0],
-			                   [1,0,0,0,1],
-			                   [1,0,0,0,1],
+			                   [0,0,0,0,1],
+			                   [0,0,0,0,1],
 			 				   [1,1,1,1,0]];
 							   				   
-			 case 'k': return [[1,0,0,0,1],
-			                   [1,0,0,1,0],
-			                   [1,0,1,0,0],
-			                   [1,1,0,0,0],
-			                   [1,0,1,0,0],
-			                   [1,0,0,1,0],
-			 				   [1,0,0,0,1]];				   
+			 case 'o': return [[0,1,1,1,0],
+			                   [1,0,0,0,1],
+			                   [1,0,0,0,1],
+			                   [1,0,0,0,1],
+			                   [1,0,0,0,1],
+			                   [1,0,0,0,1],
+			 				   [0,1,1,1,0]];				   
 							 			   				   
-			 case 'r': return [[1,1,1,1,0],
+			 case 'n': return [[1,0,0,0,1],
 			                   [1,0,0,0,1],
-			                   [1,0,0,0,1],
-			                   [1,1,1,1,0],
-			                   [1,0,0,0,1],
+			                   [1,1,0,0,1],
+			                   [1,0,1,0,1],
+			                   [1,0,0,1,1],
 			                   [1,0,0,0,1],
 			 				   [1,0,0,0,1]];
-						   				   				   	 		   
-			 case 'z': return [[1,1,1,1,1],
-			                   [0,0,0,0,1],
-			                   [0,0,0,1,0],
+							   
+			 case 'u': return [[1,0,0,0,1],
+			                   [1,0,0,0,1],
+			                   [1,0,0,0,1],
+			                   [1,0,0,0,1],
+			                   [1,0,0,0,1],
+			                   [1,0,0,0,1],
+			 				   [1,1,1,1,1]];
+							   
+			 case 't': return [[1,1,1,1,1],
 			                   [0,0,1,0,0],
-			                   [0,1,0,0,0],
+							   [0,0,1,0,0],
+							   [0,0,1,0,0],
+							   [0,0,1,0,0],
+							   [0,0,1,0,0],
+							   [0,0,1,0,0]];
+			 case 'l': return [[1,0,0,0,0],
 			                   [1,0,0,0,0],
-			 				   [1,1,1,1,1]];				   
+			                   [1,0,0,0,0],
+			                   [1,0,0,0,0],
+			                   [1,0,0,0,0],
+			                   [1,0,0,0,0],
+			 				   [1,1,1,1,1]];	
+			 case 'd': return [[1,1,1,1,0],
+			                   [1,0,0,0,1],
+							   [1,0,0,0,1],
+							   [1,0,0,0,1],
+							   [1,0,0,0,1],
+							   [1,0,0,0,1],
+							   [1,1,1,1,0]];				   							   
+						   				   				   	 		   				   
 							   			   
 			  case ' ': return [[0,0,0],
 			                    [0,0,0],
@@ -180,7 +172,7 @@
 	  for(var i=0;i<txt.length;i++){
 		  for(var j=0;j<txt[0].length;j++){
 			  if (txt[i][j] != 0){	  
-				ctx.globalAlpha=.2+Math.random()*.8;   
+				ctx.globalAlpha=.2+Math.random()*.8;  
 			    ctx.fillRect(j*brickW+x,i*brickH+y,brickW,brickH);
 		      }
 		  }
